@@ -1,0 +1,14 @@
+From: $SENDER$
+To: $RECIPIENT$
+Organization: 
+Subject:  ID
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Gent.mo $NAME$,
+ 
+Ecco il tuo ID: $ID$
+
+Cordialmente
+
