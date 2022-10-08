@@ -1,6 +1,6 @@
 import smtplib
 import csv
-
+import time
 # CONFIG
 CSVFILE = "recipients.csv"
 TEMPLATE = "mail_template.txt"
@@ -17,7 +17,7 @@ SMTP_PASS = ''  # per autorizzazione,  SMTP psw
 # TEST
 DRY_RUN = 0  # non invia mail ma stampa errori nel caso in cui ce ne sarebbero potuti essere
 SAFE_MODE = 0  # invia mail al recipients al posto di csv
-RECIPIENTS = ['alberto.tomasin@gmail.com']
+RECIPIENTS = ['']
 
 template = open(TEMPLATE, "r")
 csvfile = open(CSVFILE, "r")
@@ -37,9 +37,28 @@ if not DRY_RUN:
         session.ehlo()
     if AUTH_REQUIRED:
         session.login(SMTP_USER, SMTP_PASS)
-
+counter = 0
 # Invio mail
 for row in csv_reader:
+    if counter % 50 == 0:
+        print ("Chiudo sessione SMTP")
+        session.close()
+        print("E' tempo di dormire")
+        time.sleep(2);
+        print ("Riapro la sessione SMTP")
+        if not DRY_RUN:
+            print("Sessione SMTP aperta")
+            session = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+            # session.set_debuglevel(1)
+            session.ehlo()
+            if USE_TLS and session.has_extn("STARTTLS"):  # not tested!
+                session.starttls()
+                session.ehlo()
+            if AUTH_REQUIRED:
+                session.login(SMTP_USER, SMTP_PASS)
+
+    counter += 1
+
     # prendo dati da csv
     surname = row["Nome"]
     givenname = row["Cognome"]
@@ -47,7 +66,7 @@ for row in csv_reader:
     id = row["ID"]
     recipient = "\"" + givenname + " " + surname + "\" " + "<" + email + ">"
 
-    print("Sending mail to " + email)
+    print("Invio mail a " + email)
     mssg = mail_template.replace("$NAME$", givenname + " " + surname)
     mssg = mssg.replace("$SENDER$", SENDER)
     mssg = mssg.replace("$RECIPIENT$", recipient)
@@ -56,13 +75,13 @@ for row in csv_reader:
 
     if SAFE_MODE:
         recipients = RECIPIENTS
-        print("[SAFE MODE] Sto inviando la mail a " + recipients[0])
+        print("[SAFE MODE] Invio mail a " + recipients[0])
         mssg = mssg + "\r\nquesto mess sarebbe dovuto andare a: " + email
     else:
         recipients = [email]
 
     if DRY_RUN:
-        print("[DRY RUN] Sto inviando la mail a  " + recipients[0])
+        print("[DRY RUN] Invio mail a  " + recipients[0])
         print()
         print(mssg)
         print()
@@ -73,9 +92,9 @@ for row in csv_reader:
     if smtpresult:
         errstr = ""
         for recip in smtpresult.keys():
-            errstr = """Non bestemmiare ma non sono riuscito ad inviare la mail a: %s
+            errstr = """Errore nell'invio della mail a: %s
 
-    Sto cazzo di server lancia errori del tipo: %s
+    L'errore e': %s
     %s
 
     %s""" % (recip, smtpresult[recip][0], smtpresult[recip][1], errstr)
