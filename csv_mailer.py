@@ -7,14 +7,14 @@ from datetime import datetime, timedelta
 CSVFILE = "recipients.csv"
 TEMPLATE = "mail_template.txt"
 
-SENDER = 'alberto.tomasin@jeve.it'
+SENDER = ''
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 587
 
 USE_TLS = 1  # connessione criptata con SMTP server (1/si 0/no)
 AUTH_REQUIRED = 1  # autorizzazione SMTP
-SMTP_USER = 'alberto.tomasin@jeve.it'  # per autorizzazione,  SMTP mail
-SMTP_PASS = 'AlbertoTomasin'  # per autorizzazione,  SMTP psw
+SMTP_USER = ''  # per autorizzazione,  SMTP mail
+SMTP_PASS = ''  # per autorizzazione,  SMTP psw
 
 # TEST
 DRY_RUN = 0  # non invia mail ma stampa errori nel caso in cui ce ne sarebbero potuti essere
