@@ -7,14 +7,14 @@ from datetime import datetime, timedelta
 CSVFILE = "recipients.csv"
 TEMPLATE = "mail_template.txt"
 
-SENDER = ''
+SENDER = 'alberto.tomasin@jeve.it'
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 587
 
 USE_TLS = 1  # connessione criptata con SMTP server (1/si 0/no)
 AUTH_REQUIRED = 1  # autorizzazione SMTP
-SMTP_USER = ''  # per autorizzazione,  SMTP mail
-SMTP_PASS = ''  # per autorizzazione,  SMTP psw
+SMTP_USER = 'alberto.tomasin@jeve.it'  # per autorizzazione,  SMTP mail
+SMTP_PASS = 'AlbertoTomasin'  # per autorizzazione,  SMTP psw
 
 # TEST
 DRY_RUN = 0  # non invia mail ma stampa errori nel caso in cui ce ne sarebbero potuti essere
@@ -28,11 +28,10 @@ mail_template = template.read()
 csv_reader = csv.DictReader(csvfile)  # add 'dialect="semicolon"' if necessary
 lines = len(list(csv_reader))
 
-print("Minuti stimati per inviare le mail: " + str((lines +(lines/50*120))/60))
 now = datetime.today()
 print("Ora attuale: "+ str(now))
-result_2 = now + timedelta(seconds=(lines +(lines/50*120)))
-print("Ora stimata di fine esecuzione: "+ str(result_2))
+result_2 = now + timedelta(seconds=(lines * 1.8 + (lines/50*120)))
+print("Ora stimata di fine esecuzione: " + str(result_2))
 
 csvfile = open(CSVFILE, "r")
 csv_reader = csv.DictReader(csvfile)  # add 'dialect="semicolon"' if necessary
