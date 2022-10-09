@@ -28,10 +28,10 @@ mail_template = template.read()
 csv_reader = csv.DictReader(csvfile)  # add 'dialect="semicolon"' if necessary
 lines = len(list(csv_reader))
 
-print("Minuti stimati per inviare le mail: " + str((lines +(lines/50*120))/60))
+
 now = datetime.today()
 print("Ora attuale: "+ str(now))
-result_2 = now + timedelta(seconds=(lines +(lines/50*120)))
+result_2 = now + timedelta(seconds=(lines*1,8 +(lines/50*120)))
 print("Ora stimata di fine esecuzione: "+ str(result_2))
 
 csvfile = open(CSVFILE, "r")
