@@ -70,9 +70,9 @@ for row in csv_reader:
     counter += 1
 
     # prendo dati da csv
-    surname = "Tomasin"
-    givenname = "Alberto"
-    email = row["Email"]
+    surname = ""
+    givenname = ""
+    email = row["email"]
     id = "Questionario yeswork - lavoro in un tocco"
     recipient = "\"" + givenname + " " + surname + "\" " + "<" + email + ">"
     time.sleep(1)
