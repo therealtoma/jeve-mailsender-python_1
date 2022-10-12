@@ -7,14 +7,14 @@ from datetime import datetime, timedelta
 CSVFILE = "recipients.csv"
 TEMPLATE = "mail_template.txt"
 
-SENDER = 'alberto.tomasin@jeve.it'
+SENDER = "alberto.tomasin@jeve.it"
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 587
 
 USE_TLS = 1  # connessione criptata con SMTP server (1/si 0/no)
 AUTH_REQUIRED = 1  # autorizzazione SMTP
-SMTP_USER = 'alberto.tomasin@jeve.it'  # per autorizzazione,  SMTP mail
-SMTP_PASS = 'AlbertoTomasin'  # per autorizzazione,  SMTP psw
+SMTP_USER = "alberto.tomasin@jeve.it"  # per autorizzazione,  SMTP mail
+SMTP_PASS = "AlbertoTomasin"
 
 # TEST
 DRY_RUN = 0  # non invia mail ma stampa errori nel caso in cui ce ne sarebbero potuti essere
@@ -30,7 +30,7 @@ lines = len(list(csv_reader))
 
 now = datetime.today()
 print("Ora attuale: "+ str(now))
-result_2 = now + timedelta(seconds=(lines*1,8 * 1.8 + (lines/50*120)))
+result_2 = now + timedelta(seconds=(lines * 1.8 + (lines/50*120)))
 print("Ora stimata di fine esecuzione: " + str(result_2))
 
 csvfile = open(CSVFILE, "r")
@@ -70,17 +70,17 @@ for row in csv_reader:
     counter += 1
 
     # prendo dati da csv
-    surname = row["Nome"]
-    givenname = row["Cognome"]
+    surname = "Tomasin"
+    givenname = "Alberto"
     email = row["Email"]
-    id = row["ID"]
+    id = "Questionario yeswork - lavoro in un tocco"
     recipient = "\"" + givenname + " " + surname + "\" " + "<" + email + ">"
     time.sleep(1)
     print(str(counter) + " - Invio mail a " + email)
-    mssg = mail_template.replace("$NAME$", givenname + " " + surname)
-    mssg = mssg.replace("$SENDER$", SENDER)
-    mssg = mssg.replace("$RECIPIENT$", recipient)
-    mssg = mssg.replace("$EMAIL$", email)
+    mssg = mail_template.replace("$NAME$", givenname)
+    #mssg = mssg.replace("$SENDER$", SENDER)
+    #mssg = mssg.replace("$RECIPIENT$", recipient)
+    #mssg = mssg.replace("$EMAIL$", email)
     mssg = mssg.replace("$ID$", id)
 
     if SAFE_MODE:
@@ -97,7 +97,8 @@ for row in csv_reader:
         print()
         print("################################################################################")
     else:
-        smtpresult = session.sendmail(SENDER, recipients, mssg)
+        print(mssg)
+        smtpresult = session.sendmail(SENDER, recipients, mssg.encode('UTF-8'))
 
     if smtpresult:
         errstr = ""

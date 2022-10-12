@@ -1,14 +1,16 @@
-From: $SENDER$
-To: $RECIPIENT$
-Organization: 
-Subject:  ID
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Subject:  $ID$
 
-Gent.mo $NAME$,
- 
-Ecco il tuo ID: $ID$
+Buongiorno, sono $NAME$
 
-Cordialmente
+Vi chiedo cortesemente il vostro aiuto nella compilazione del seguente questionario realizzato in collaborazione con la recente realtà di Yeswork, applicazione innovativa sviluppata da Il Lavoro in un Tocco s.r.l.
+
+Yeswork è un’app che rivoluziona la ricerca del lavoro permettendo ad imprese, lavoratori e studenti di domandare e offrire prestazioni lavorative occasionali in momenti di necessità e senza vincolo contrattuale, retribuito e nel rispetto della legge.
+
+La vision di Yeswork è quella di “creare una Community di milioni di persone per migliorare la loro vita e quella degli altri, risolvendo problematiche quotidiane”.
+Al fine di realizzare un’accurata ricerca di mercato, vi chiedo gentilmente di dedicare 5 minuti alla compilazione del questionario che allego.
+
+https://so7rs123rmm.typeform.com/to/QLy5Fixa
+
+Vi ringrazio anticipatamente e vi porgo cordiali saluti.
+
 
