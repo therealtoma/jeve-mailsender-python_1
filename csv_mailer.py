@@ -4,7 +4,7 @@ import time
 from datetime import datetime, timedelta
 
 # CONFIG
-CSVFILE = "recipients.csv"
+CSVFILE = "recipents.csv"
 TEMPLATE = "mail_template.txt"
 
 SENDER = '' # AGGIUNGI LA TUA EMAIL
