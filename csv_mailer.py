@@ -72,7 +72,7 @@ for row in csv_reader:
     # prendo dati da csv
     surname = "" # AGGIUNGI IL TUO NOME
     givenname = "" # AGGIUNGI IL TUO COGNOME
-    email = row["Email"]
+    email = row["email"]
     id = "Questionario yeswork - lavoro in un tocco"
     recipient = "\"" + givenname + " " + surname + "\" " + "<" + email + ">"
     time.sleep(1)
