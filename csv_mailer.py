@@ -7,21 +7,21 @@ from datetime import datetime, timedelta
 CSVFILE = "recipients.csv"
 TEMPLATE = "mail_template.txt"
 
-SENDER = ''
+SENDER = '' # AGGIUNGI LA TUA EMAIL
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 587
 
 USE_TLS = 1  # connessione criptata con SMTP server (1/si 0/no)
 AUTH_REQUIRED = 1  # autorizzazione SMTP
-SMTP_USER = ''  # per autorizzazione,  SMTP mail
-SMTP_PASS = ''  # per autorizzazione,  SMTP psw
+SMTP_USER = ''  # AGGIUNGI LA TUA EMAIL
+SMTP_PASS = ''  # AGGIUNGI LA TUA PASSWORD
 
 # TEST
 DRY_RUN = 0  # non invia mail ma stampa errori nel caso in cui ce ne sarebbero potuti essere
 SAFE_MODE = 0  # invia mail al recipients al posto di csv
 RECIPIENTS = ['alberto.tomasin@gmail.com']
 
-template = open(TEMPLATE, "r")
+template = open(TEMPLATE, encoding='utf-8')
 csvfile = open(CSVFILE, "r")
 
 mail_template = template.read()
@@ -70,9 +70,9 @@ for row in csv_reader:
     counter += 1
 
     # prendo dati da csv
-    surname = ""
-    givenname = ""
-    email = row["email"]
+    surname = "" # AGGIUNGI IL TUO NOME
+    givenname = "" # AGGIUNGI IL TUO COGNOME
+    email = row["Email"]
     id = "Questionario yeswork - lavoro in un tocco"
     recipient = "\"" + givenname + " " + surname + "\" " + "<" + email + ">"
     time.sleep(1)
@@ -97,7 +97,6 @@ for row in csv_reader:
         print()
         print("################################################################################")
     else:
-        print(mssg)
         smtpresult = session.sendmail(SENDER, recipients, mssg.encode('UTF-8'))
 
     if smtpresult:
